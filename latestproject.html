@@ -1,0 +1,81 @@
+	
+    
+    <!--section starts -->
+							  <section class="our-causes">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="page-header section-header clearfix">
+								<?php								
+							$querytitle="select id,Title from latestproject order by id asc limit 1";
+							if($stmt=$conn->prepare($querytitle))
+							{
+								$stmt->execute();
+								$stmt->bind_result($id,$Title);
+								while($stmt->fetch())
+								{
+							
+							?>
+									<h2><?php echo $Title;?></h2>
+							<?php 
+							}					
+					         $stmt->close();
+		                      }
+		
+			  
+			                    ?>
+								</div>
+
+								<div class="article-list flexslider article-slider progressbar">
+									<ul class="slides">
+									<?php
+									$corimagepath1='de_cms/Image/';
+									$querycor1="select id,Heading,Content,Description,file from latestproject order by id asc limit 9";
+									
+									if($stmt1=$conn->prepare($querycor1))
+									{
+									$stmt1->execute();
+									$stmt1->bind_result($id,$Heading,$Content,$Description,$file);
+									while($stmt1->fetch())
+									{
+									$corimage1=$corimagepath1.$file ; 
+									
+									?>
+									<li>
+									<div class="items zoom">
+										<!--<h3 class="h6"><?php// echo $Heading  ?></h3>-->
+										<a href="#" class="img-thumb">
+											<figure>
+											<img src="<?php echo $corimage1; ?>" alt="">
+											</figure>
+											</a>
+										
+										<h3 class="h6"><?php echo $Heading  ?></h3>
+										<span class="donation"> <?php echo $Description ; ?></span>
+										<!--<p>
+											<?php 
+											/*if(strlen($Content) > 100) {
+                                            echo substr($Content, 0, 100).' '.$hyperlink;
+                                            }
+                                            else {
+                                            echo $Content;
+                                            }
+											
+											*/
+											 ?>
+										</p>-->
+										<a  href="latestproject.php?id=<?php echo $id ;  ?>"  class="btn btn-default">Read More</a>
+									</div>
+									</li>
+							<?php 
+							}					
+					         $stmt1->close();
+		                      }
+			                    ?>
+								</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			<!--section ends -->

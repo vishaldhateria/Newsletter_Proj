@@ -3,32 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <title>Fetch The Newsletter Data </title>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 
-<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 </head>
 <body>
-    <center>
+    
 <div class="container">
     <div class="row">
+        <div class="col-md-2">
+</div>
+        <div class="col-md-8">
 <form type="GET" id="myForm">
-<input type="text"  id="name" placeholder="paste the title..." /><br>
-<input type="text" id="link" placeholder="paste your link here..." ><br>
-<input type="radio" name="radioName" value="left">left<br>
-<input type="radio" name="radioName" value="right">right<br>
+     <div class="form-group">
+<label for="Article Title">Article Title</label>
+<input type="text" class="form-control" id="name" placeholder="paste the title..." />
+</div>
 
-<submit type="submit" id="submit" >Submit<br>
+<div class="form-group">
+<label for="Article link">Article link</label>
+<input type="text" class="form-control" id="link" placeholder="paste your link here..." >
+</div>
+
+<div class="form-group">
+<label for="Article Image">Article Image</label>
+<input type="text" class="form-control" id="image" placeholder="paste your image here..." >
+</div>
+
+<div class="form-group">
+<label for="left">left</label>
+<input type="radio"  name="radioName" value="left">
+</div>
+
+<div class="form-group">
+<label for="Right">Right</label>
+<input type="radio"  name="radioName" value="right">
+</div>
+
+<submit type="submit"   id="submit" class="btn btn-small" >Submit<br>
 </form>
-      
+</div>
+<div class="col-md-2">
 </div>
 </div>
-
+</div>
+ 
   <div id="result"></div>
-</center>
+
 </body>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
@@ -38,6 +62,7 @@ $('#submit').click(function (){
     console.log("clicked");
     var articlename = $('#name').val();
     console.log(articlename);
+    var imagelink = $('#link').val();
 
     var link = $('#link').val();
     console.log(link);
@@ -48,7 +73,8 @@ console.log(section);
 			var form_data = 
 			  'articlename='+articlename+
 			  '&section='+section+
-			  '&link='+link;
+			  '&link='+link+
+			  '&imagelink='+imagelink;
 
     $.ajax({
         url: 'getdata.php',
@@ -63,6 +89,6 @@ console.log(section);
     });
 
 })
-
 </script>
+
 </html>

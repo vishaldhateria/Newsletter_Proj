@@ -12,6 +12,8 @@ if($conn  === false){
 $link= mysqli_real_escape_string($conn, $_GET['link']);
 $section = mysqli_real_escape_string($conn, $_GET['section']);
 $articlename = mysqli_real_escape_string($conn, $_GET['articlename']);
+$imagelink = mysqli_real_escape_string($conn, $_GET['imagelink']);
+
 
 
 
@@ -23,7 +25,7 @@ if ($_GET['section'] == "left") {
     if($result = mysqli_query($conn, $sql)){
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_array($result)){
-                $term = strip_tags(substr($row['contents'], 0, 100));
+                $term = strip_tags(substr($row['contents'], 0, 87));
                 echo '< div  class =
                "col num6" style = "/* align-items: center; */Float: left;min-width: 260px;max-width: 260px;width: 260px;width: calc(1500% - 9725px);background-color: #f1f1f1;margin-left: 28px;" >
                     < div style = "background-color: transparent; width: 100% !important;" >
@@ -32,7 +34,7 @@ if ($_GET['section'] == "left") {
                 "img-container center fullwidth" style = " background-color: white; " >
                     < a href = "'. $link . '" target = "_blank" style = " " >
                     < img class =
-                "center fullwidth" align = "center" border = "0" src = "https://thedailyeye.info/dailyeye_cms/Image/2018/1/' . $row['file'] . '"
+                "center fullwidth" align = "center" border = "0" src = "' . $imagelink . '"
                     alt = "Image" title = "Image" style = "display:block;height:auto;max-width:100%; " vspace = "0" width = "290" >
                     < / a >
                     < / div >
@@ -88,17 +90,17 @@ if ($_GET['section'] == "right") {
     if ($result = mysqli_query($conn, $sql)) {
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result)) {
-                $term = strip_tags(substr($row['contents'], 0, 100));
+                $term = strip_tags(substr($row['contents'], 0, 87));
 
                 echo '< div  class =
-               "col num6" style = "/* align-items: center; */Float: left;min-width: 260px;max-width: 260px;width: 260px;width: calc(1500% - 9725px);background-color: #f1f1f1;margin-left: 28px;" >
+               "col num6" style = "Float: right;min-width: 260px;max-width: 260px;width: 260px;width: calc(1500% - 9725px);background-color: #f1f1f1;margin-left: 28px;" >
                     < div style = "background-color: transparent; width: 100% !important;" >
                     < div style = "border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-right: 0px; padding-left: 0px;" >
                     < div align = "center" class =
                 "img-container center fullwidth" style = " background-color: white; " >
                     < a href = "'. $link . '" target = "_blank" style = " " >
                     < img class =
-                "center fullwidth" align = "center" border = "0" src = "https://thedailyeye.info/dailyeye_cms/Image/2018/1/' . $row['file'] . '"
+                "center fullwidth" align = "center" border = "0" src = "' . $imagelink . '"
                     alt = "Image" title = "Image" style = "display:block;height:auto;max-width:100%; " vspace = "0" width = "290" >
                     < / a >
                     < / div >
@@ -108,7 +110,7 @@ if ($_GET['section'] == "right") {
                     < div style = " text-align: left; padding-left: 10px; padding-right: 5px;" >
                     < div >
                     < a href = "' . $link . '" style = "color:rgb(0,0,0);font-family:Segoe UI,Lucida Grande,Tahoma,sans-serif;font-style:italic;font-weight:bold;text-decoration:none;"
-                    target = "_blank" data - saferedirecturl = "' . $link . '" > ' . $_POST['title'] . '< / a >
+                    target = "_blank" data - saferedirecturl = "' . $link . '" > ' . $row['title'] . '< / a >
                     < / div >
                     < div >
                     < br >
@@ -136,8 +138,7 @@ if ($_GET['section'] == "right") {
                     < / div >
                     < / div >
                     < / div >
-                    <button onclick="myFunction()">Copy text</button>
-';
+                    <button onclick="myFunction()">Copy text</button>';
             }
             // Close result set
             mysqli_free_result($result);
